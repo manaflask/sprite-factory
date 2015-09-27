@@ -201,8 +201,8 @@ module SpriteFactory
       images = library.load(image_files)
       images.each do |i|
         i[:name], i[:ext] = extract_image_filename(i[:filename], input_path)
-        raise RuntimeError, "image #{i[:name]} does not fit within a fixed width of #{width}" if width && (width < i[:width])
-        raise RuntimeError, "image #{i[:name]} does not fit within a fixed height of #{height}" if height && (height < i[:height])
+        raise RuntimeError, "image #{i[:name]} does not fit within a fixed width of #{width}" if width && (width > i[:width])
+        raise RuntimeError, "image #{i[:name]} does not fit within a fixed height of #{height}" if height && (height > i[:height])
       end
       images.sort_by {|i| [image_name_without_pseudo_class(i), image_pseudo_class_priority(i)] }
     end
